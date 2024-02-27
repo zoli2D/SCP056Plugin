@@ -36,6 +36,7 @@ namespace SCP056Plugin.Commands
             player.ChangeAppearance(RoleTypeId.FacilityGuard);
             player.CustomInfo = $"{player.Nickname}\nFacility Guard";
             player.ShowHint(SCP056Plugin.Instance.Config.GuardHint);
+            SCP056Plugin.Instance.Config.Scp056RoleConfig.Roleid = 0;
             return true;
         }
     }

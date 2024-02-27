@@ -36,6 +36,7 @@ namespace SCP056Plugin.Commands
             player.ChangeAppearance(RoleTypeId.Scientist);
             player.CustomInfo = $"{player.Nickname}\nScientist";
             player.ShowHint(SCP056Plugin.Instance.Config.ScientistHint);
+            SCP056Plugin.Instance.Config.Scp056RoleConfig.Roleid = 2;
             return true;
         }
     }

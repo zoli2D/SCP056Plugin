@@ -37,6 +37,7 @@ namespace SCP056Plugin.Commands
             player.ChangeAppearance(RoleTypeId.ClassD);
             player.CustomInfo = $"{player.Nickname}\nClass D Personnel";
             player.ShowHint(SCP056Plugin.Instance.Config.ClassDHint);
+            SCP056Plugin.Instance.Config.Scp056RoleConfig.Roleid = 1;
             return true;
         }
     }

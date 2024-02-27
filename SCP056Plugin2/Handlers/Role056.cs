@@ -45,6 +45,7 @@
 
         /// <inheritdoc />
         public override string Name { get; set; } = "SCP-056";
+        public int Roleid { get; set; } = 0;
 
         /// <inheritdoc />
         public override string Description { get; set; } =
@@ -197,6 +198,7 @@
             PlayerEvent.Hurting += OnHurting;
             PlayerEvent.Shooting += OnShooting;
             PlayerEvent.ActivatingGenerator += OnActivatingGenerator;
+            PlayerEvent.Dying += OnDying;
 
             base.SubscribeEvents();
         }
@@ -205,8 +207,12 @@
 
         private void OnDying(DyingEventArgs ev)
         {
-            string message = "SCP 0 5 6 has been successfully terminated";
-            Cassie.Message(message);
+            if(CustomRole.Get(56).Check(ev.Player))
+            {
+                string message = "SCP 0 5 6 has been successfully terminated";
+                Cassie.Message(message);
+            }
+
         }
 
 
@@ -244,15 +250,15 @@
             for (; ; )
             {
                 yield return Timing.WaitForSeconds(5f);
-                if(VisibleRole == RoleTypeId.FacilityGuard)
+                if(Roleid == 0)
                 {
                     player.CustomInfo = $"{player.Nickname}\nFacility Guard";
                 }
-                if (VisibleRole == RoleTypeId.Scientist)
+                if (Roleid == 2)
                 {
                     player.CustomInfo = $"{player.Nickname}\nScientist";
                 }
-                if (VisibleRole == RoleTypeId.ClassD)
+                if (Roleid == 1)
                 {
                     player.CustomInfo = $"{player.Nickname}\nClass-D Personnel";
                 }
